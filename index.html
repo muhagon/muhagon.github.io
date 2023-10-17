@@ -1,1 +1,87 @@
-Hello World
+<html>
+<head>
+<title>Lista de Incidencias por C.P.</title>
+<style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th {
+            background-color: orange;
+            color: white;
+            padding: 10px;
+        }
+        td {
+            background-color: #e0e0e0;
+            color: blue;
+            padding: 10px;
+        }
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+</style>
+</head>
+<body>
+<h1>Lista de Incidencias por C.P.</h1>
+<input id="postalCode" type="text" />
+<button onclick="generateIncidents()">Buscar Incidencias</button>
+<br> </br>
+<table id="incidentTable">
+<tr>
+<th>ID Incidencia</th>
+<th>Descripción</th>
+</tr>
+</table>
+
+ 
+
+    <script>
+        function generateIncidents() {
+            var postalCode = document.getElementById("postalCode").value;
+
+ 
+
+            if (!postalCode) {
+                alert("Please enter a postal code.");
+                return;
+            }
+
+ 
+
+            var incidentTable = document.getElementById("incidentTable");
+
+ 
+
+            // Clear any existing rows
+            while (incidentTable.rows.length > 1) {
+                incidentTable.deleteRow(1);
+            }
+
+ 
+
+            // Generate some random incidents
+            for (var i = 0; i < 5; i++) {
+                var row = incidentTable.insertRow();
+
+ 
+
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+
+ 
+
+                var incidentId = Math.floor(Math.random() * 10000);
+                cell1.innerHTML = `<a href="#">${incidentId}</a>`;
+                cell2.textContent = `Incidencia ${i+1} en C.P.: ${postalCode}.`;
+            }
+        }
+</script>
+</body>
+</html>
